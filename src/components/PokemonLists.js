@@ -9,14 +9,19 @@ const PokemonLists = () => {
   // useEffect ativa o efeito de fetch do axios somente uma vez  
   useEffect(() => {
     axios.get("https://pokeapi.co/api/v2/pokemon").then(res => {
-        setPokemonLists(res.data.results.map(p => p.name))
+        setPokemonLists(res.data.results.map(pokemonList => pokemonList.name))
       }, [])
   }, [])
+
+  // function deletePokemon
+  const deletePokemon = (pname) => {
+    setPokemonLists(pokemonLists.filter((pokemonList) => pokemonList !== pname))
+  }
 
   return (
     <div className='container'>
         {pokemonLists.map((pokemonList) => (
-            <PokemonList key={pokemonList.name} pokemonList={pokemonList}/>
+            <PokemonList key={pokemonList.name} pokemonList={pokemonList} deletePokemon={deletePokemon}/>
         ))}
     </div>
   )

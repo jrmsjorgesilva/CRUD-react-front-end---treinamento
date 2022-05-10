@@ -7,6 +7,7 @@ import Infos from './components/Infos'
 import Vetores from './components/Vetores'
 import Sites from './components/Sites'
 import Lists from './components/Lists'
+import PokemonLists from './components/PokemonLists'
 import './App.css';
 
 
@@ -71,6 +72,8 @@ const toggleReminder = (id) => {
       <Sites />
       {/* componente lists */}
       <Lists />
+      {/* componente PokemonLists */}
+      <PokemonLists />
     </div>
   );
 }

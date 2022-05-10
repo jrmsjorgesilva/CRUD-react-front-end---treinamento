@@ -1,9 +1,11 @@
+import { FaTrash } from 'react-icons/fa' 
 
-
-const Site = ({ site }) => {
+const Site = ({ site, deleteSite }) => {
   return (
     <div className='task'>
-        <h3>{site.endereco}</h3>
+        <h3>{site.endereco}
+          <FaTrash style={{ color: 'red' }} onClick={() => deleteSite(site.id)}/>
+        </h3>
     </div>
   )
 }

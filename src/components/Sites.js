@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 const Sites = () => {
 
-  const [sites] = useState([
+  const [sites, setSites] = useState([
     {
         id: 1,
         endereco: 'dev.com.br'
@@ -26,16 +26,23 @@ const Sites = () => {
     }
   ])
 
-  console.log(sites)
+  //   DELETE SITES
+  const deleteSite = (id) => {
+      setSites(sites.filter((site) => site.id !== id))
+  }
 
   return (
-    <div className='container'>
-        <h3>Minha lista de sites: </h3>
-        {sites.map((site) => (
-            <Site key={site.id} site={site} />
-        ))}
-    </div>
-  )
+    sites.length > 0
+        ) ? (
+            <div className='container'>
+                <h3>Minha lista de sites: </h3>
+                {sites.map((site) => (
+                    <Site key={site.id} site={site} deleteSite={deleteSite} />
+                ))}
+            </div>
+        ) : (
+            'Nenhum site para filtrar'
+    )
 }
 
 export default Sites

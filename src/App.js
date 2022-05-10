@@ -42,32 +42,34 @@ const App = () => {
     ]
   )
 
-  // declaração do hook state com array infos
-const [infos, setInfos] = useState([
-  {
-      id: 1,
-      nome: "Jorge",
-      idade: 23
-  },
-  {
-      id: 2,
-      nome: "Manoela",
-      idade: 53
-  },
-  {
-      id: 3,
-      nome: "Patricia",
-      idade: 43
-  },
-])
+// FUNCTION DELETE
+const deleteTask = (id) => {
+  // filtra as tarefas que não sejam o id inserido e joga no setTasks
+  setTasks(tasks.filter((task) => task.id !== id));
+}
+
+// FUNCTION TOGGLE REMINDER
+const toggleReminder = (id) => {
+  setTasks(tasks.map((task) => task.id === id ? { ...task, reminder: !task.reminder } : task))
+}
     
   return (
+    // container
     <div className="container">
+      {/* // componente header */}
       <Header autor="Jorge Machado"/>
-      <Tasks tasks={tasks} />
-      <Infos infos={infos} />
+      {tasks.length > 0 ? (
+        <Tasks tasks={tasks} deleteTask={deleteTask} toggleReminder={toggleReminder}/>
+      ) : (
+        'Nenhuma tarefa'
+      )}
+      {/* componente infos */}
+      <Infos />
+      {/* componente vetores */}
       <Vetores />
+      {/* componente sites */}
       <Sites />
+      {/* componente lists */}
       <Lists />
     </div>
   );

@@ -4,7 +4,7 @@ import Vetor from './Vetor'
 
 const Vetores = () => {
 
-  const [vetores] = useState(
+  const [vetores, setVetores] = useState(
       [
           {
               id: 1,
@@ -37,12 +37,21 @@ const Vetores = () => {
       ]
   )
 
+  // DELETE VETORES
+  const deleteVetor = (id) => {
+    setVetores(vetores.filter((vetor) => vetor.id !== id))
+  }
+
   return (
+    vetores.length > 0
+  ) ? (
     <div className='container'>
         {vetores.map((vetor) => (
-            <Vetor key={vetor.id} vetor={vetor}/>
+            <Vetor key={vetor.id} vetor={vetor} deleteVetor={deleteVetor}/>
         ))}
     </div>
+  ) : (
+    'Nenhum vetor morreu nas filmagens'
   )
 }
 

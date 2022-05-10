@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 const Lists = () => {
 
-  const [lists] = useState([
+  const [lists, setList] = useState([
       {
           id: 1,
           categoria: "Pet Shop"
@@ -18,12 +18,20 @@ const Lists = () => {
       },
   ])
 
+//   DELETE LISTS
+const deleteList = (id) => {
+    setList(lists.filter((list) => list.id !== id))
+}
+
   return (
-    <div className='container'>
-        {lists.map((list) => (
-            <List key={list.id} list={ list } />
-        ))}
-    </div>
+      lists.length > 0) ? (
+        <div className='container'>
+            {lists.map((list) => (
+                <List key={list.id} list={ list } deleteList={deleteList} />
+            ))}
+        </div>
+      ) : (
+        'Nenhuma lista a ser exibida'
   )
 }
 

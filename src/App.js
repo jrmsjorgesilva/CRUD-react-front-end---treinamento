@@ -9,6 +9,7 @@ import Sites from './components/Sites'
 import Lists from './components/Lists'
 import PokemonLists from './components/PokemonLists'
 import Noticias from './components/Noticias'
+import Login from './components/Login'
 import './App.css';
 
 
@@ -77,6 +78,8 @@ const toggleReminder = (id) => {
       <PokemonLists />
       {/* componente Noticias */}
       <Noticias />
+      {/* componente Login identificação */}
+      <Login />
     </div>
   );
 }

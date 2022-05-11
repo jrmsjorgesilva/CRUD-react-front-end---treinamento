@@ -1,33 +1,28 @@
 import List from './List'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 const Lists = () => {
 
-  const [lists, setList] = useState([
-      {
-          id: 1,
-          categoria: "Pet Shop"
-      },
-      {
-          id: 2,
-          categoria: "Viagens"
-      },
-      {
-          id: 3,
-          categoria: "Cosméticos"
-      },
-  ])
+const [lists, setLists] = useState([])
+
+// chamada axios da API
+useEffect(() => {
+    axios.get("https://pokeapi.co/api/v2/pokemon").then(res => {
+        setLists(res.data.results.map(list => list.name))
+    }, [])
+}, [])
 
 //   DELETE LISTS
-const deleteList = (id) => {
-    setList(lists.filter((list) => list.id !== id))
+const deleteList = (name) => {
+    setLists(lists.filter((list) => list !== name))
 }
 
   return (
       lists.length > 0) ? (
         <div className='container'>
             {lists.map((list) => (
-                <List key={list.id} list={ list } deleteList={deleteList} />
+                <List key={list.name} list={ list } deleteList={deleteList} />
             ))}
         </div>
       ) : (

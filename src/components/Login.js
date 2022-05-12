@@ -22,7 +22,8 @@ const Login = () => {
 
   return (
     <>
-      {!login.logado &&
+      {/* substituido login.logado por false para nunca aparecer o menu - temporario */}
+      {false &&
         <div className='container'>
           <form className={`form-control ${styleLogin}`}>
             <img src='../logo' alt="logo" />

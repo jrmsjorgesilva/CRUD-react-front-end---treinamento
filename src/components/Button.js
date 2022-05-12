@@ -1,8 +1,14 @@
 // COMPONENTE BUTTON
 
-const Button = ({ color, text }) => {
+const Button = ({ color, text, addTask }) => {
   return (
-    <button className='btn' style={{backgroundColor: color}}>{ text }</button>
+    <button 
+      className='btn' 
+      style={{ backgroundColor: color }}
+      onClick={addTask}
+    >
+      { text }
+    </button>
   )
 }
 

@@ -1,5 +1,6 @@
 // HOOK USESTATE IMPORT
 import { useState } from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 // import logo from './logo.svg';
 import Header from './components/Header'
 import TasksAdd from './components/TasksAdd'
@@ -10,6 +11,8 @@ import Sites from './components/Sites'
 import Lists from './components/Lists'
 import PokemonLists from './components/PokemonLists'
 import Noticias from './components/Noticias'
+import Footer from './components/Footer'
+import About from './components/About'
 import './App.css';
 
 
@@ -68,33 +71,47 @@ const App = () => {
   }
 
   return (
-    // container
-    <div className="container">
-      {/* // componente header */}
-      <Header autor="Jorge Machado" />
-      {
-        showAddTask 
-        &&
-        <TasksAdd addTask={addTask}/>
-      }
-        {tasks.length > 0 ? (
-        <Tasks tasks={tasks} deleteTask={deleteTask} toggleReminder={toggleReminder} />
-      ) : (
-        'Nenhuma tarefa'
-      )}
-      {/* componente infos */}
-      <Infos />
-      {/* componente vetores */}
-      <Vetores />
-      {/* componente sites */}
-      <Sites />
-      {/* componente lists */}
-      <Lists />
-      {/* componente PokemonLists */}
-      <PokemonLists />
-      {/* componente Noticias */}
-      <Noticias />
-    </div>
+    // ROUTER ELEMENT
+    <Router>
+      {/* container */}
+      <div className="container">
+        {/* // componente header */}
+        <Header 
+          autor="Jorge Machado" 
+          addTask={() => setShowAddTask(!showAddTask)}
+          showAddTask={showAddTask} 
+        />
+        {
+          showAddTask 
+          &&
+          <TasksAdd addTask={addTask}/>
+        }
+          {tasks.length > 0 ? (
+          <Tasks tasks={tasks} deleteTask={deleteTask} toggleReminder={toggleReminder} />
+        ) : (
+          'Nenhuma tarefa'
+        )}
+        {/* componente infos */}
+        <Infos />
+        {/* componente vetores */}
+        <Vetores />
+        {/* componente sites */}
+        <Sites />
+        {/* componente lists */}
+        <Lists />
+        {/* componente PokemonLists */}
+        <PokemonLists />
+        {/* componente Noticias */}
+        <Noticias />
+        <Routes>
+          <Route
+            path='/about' 
+            element={<About />}
+          />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
